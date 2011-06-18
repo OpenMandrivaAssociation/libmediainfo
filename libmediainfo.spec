@@ -5,7 +5,7 @@
 %define devname %mklibname %{oname} -d
 
 Name:		libmediainfo
-Version:	0.7.44
+Version:	0.7.45
 Release:	%mkrel 1
 Summary:	Supplies technical and tag information about a video or audio file
 Group:		System/Libraries
@@ -74,8 +74,7 @@ chmod 644 *.txt *.html Source/Doc/*.html
 
 %build
 pushd Project/GNU/Library
-	chmod +x autogen
-	./autogen
+	autoreconf -vfi
 	%configure2_5x \
 		--enable-shared \
 		--disable-static \
@@ -101,8 +100,8 @@ popd
 install -dm 755 %{buildroot}%{_includedir}/MediaInfo
 install -m 644 Source/MediaInfo/*.h %{buildroot}%{_includedir}/MediaInfo
 install -dm 755 %{buildroot}%{_includedir}/MediaInfoDLL
-install -m 644 Source/MediaInfoDLL/MediaInfoDLL.cs %{buildroot}%{_includedir}/MediaInfoDLL
 install -m 644 Source/MediaInfoDLL/*.h %{buildroot}%{_includedir}/MediaInfoDLL
+install -m 644 Source/MediaInfoDLL/MediaInfoDLL.cs %{buildroot}%{_includedir}/MediaInfoDLL
 install -m 644 Source/MediaInfoDLL/MediaInfoDLL.*.java %{buildroot}%{_includedir}/MediaInfoDLL
 install -m 644 Source/MediaInfoDLL/MediaInfoDLL*.py %{buildroot}%{_includedir}/MediaInfoDLL
 
