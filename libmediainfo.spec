@@ -5,8 +5,8 @@
 %define devname %mklibname %{oname} -d
 
 Name:		libmediainfo
-Version:	0.7.45
-Release:	%mkrel 1
+Version:	0.7.54
+Release:	1
 Summary:	Supplies technical and tag information about a video or audio file
 Group:		System/Libraries
 License:	LGLPv3+
@@ -90,7 +90,6 @@ pushd Source/Doc
 popd
 
 %install
-rm -rf %{buildroot}
 
 pushd Project/GNU/Library/
 	%makeinstall_std
@@ -114,16 +113,11 @@ install -Dm 644 Project/GNU/Library/libmediainfo.pc %{buildroot}%{_libdir}/pkgco
 #we don't want these
 rm -rf %{buildroot}%{_libdir}/libmediainfo.la
 
-%clean
-rm -rf %{buildroot}
-
 %files -n %{libname}
-%defattr(-,root,root,-)
 %doc History.txt License.html ReadMe.txt
 %{_libdir}/libmediainfo.so.%{major}*
 
 %files -n %{devname}
-%defattr(-,root,root,-)
 %doc Changes.txt Doc Source/Example
 %{_includedir}/MediaInfo
 %{_includedir}/MediaInfoDLL
