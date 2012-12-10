@@ -13,10 +13,10 @@ License:	LGLPv3+
 URL:		http://mediainfo.sourceforge.net/
 Source0:	http://downloads.sourceforge.net/%{oname}/%{name}_%{version}.tar.bz2
 BuildRequires:	dos2unix
-BuildRequires:	zenlib-devel
+BuildRequires:	pkgconfig(libzen)
 BuildRequires:	pkgconfig
-BuildRequires: 	zlib-devel
-BuildRequires:	curl-devel
+BuildRequires:	pkgconfig(zlib)
+BuildRequires:	pkgconfig(libcurl)
 BuildRequires:	doxygen
 
 %description
@@ -73,6 +73,7 @@ dos2unix *.txt *.html Source/Doc/*.html
 chmod 644 *.txt *.html Source/Doc/*.html
 
 %build
+export LDFLAGS="${LDFLAGS} -lzen" 
 pushd Project/GNU/Library
 	autoreconf -vfi
 	%configure2_5x \
@@ -123,3 +124,22 @@ rm -rf %{buildroot}%{_libdir}/libmediainfo.la
 %{_includedir}/MediaInfoDLL
 %{_libdir}/libmediainfo.so
 %{_libdir}/pkgconfig/*.pc
+
+
+%changelog
+* Fri Jun 01 2012 Alexander Khrukin <akhrukin@mandriva.org> 0.7.58-1
++ Revision: 801669
+- version update 0.7.54
+
+* Fri Mar 16 2012 Alexander Khrukin <akhrukin@mandriva.org> 0.7.54-1
++ Revision: 785239
+- version update 0.7,54
+
+* Sat Jun 18 2011 Jani Välimaa <wally@mandriva.org> 0.7.45-1
++ Revision: 685925
+- new version 0.7.45
+
+* Tue May 03 2011 Jani Välimaa <wally@mandriva.org> 0.7.44-1
++ Revision: 664455
+- import libmediainfo
+
