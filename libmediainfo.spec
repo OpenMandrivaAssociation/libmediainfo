@@ -6,7 +6,7 @@
 
 Name:		libmediainfo
 Version:	0.7.63
-Release:	1
+Release:	2
 Summary:	Supplies technical and tag information about a video or audio file
 Group:		System/Libraries
 License:	LGLPv3+
