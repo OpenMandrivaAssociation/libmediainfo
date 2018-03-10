@@ -21,7 +21,7 @@ BuildRequires:	pkgconfig(libcurl)
 BuildRequires:	pkgconfig(libmms)
 BuildRequires:	pkgconfig(libzen)
 BuildRequires:	pkgconfig(zlib)
-BuildRequires:	pkgconfig(tinyxml2) 
+BuildRequires:	pkgconfig(libtinyxml2_3) 
 
 %description
 MediaInfo supplies technical and tag information about a video or
