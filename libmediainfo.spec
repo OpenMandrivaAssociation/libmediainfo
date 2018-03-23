@@ -5,7 +5,7 @@
 %define devname %mklibname %{oname} -d
 
 Name:		libmediainfo
-Version:	0.7.76
+Version:	18.03
 Release:	1
 Summary:	Supplies technical and tag information about a video or audio file
 Group:		System/Libraries
@@ -19,9 +19,8 @@ BuildRequires:	doxygen
 BuildRequires:	pkgconfig(libzen) >= 0.4.29
 BuildRequires:	pkgconfig(libcurl)
 BuildRequires:	pkgconfig(libmms)
-BuildRequires:	pkgconfig(libzen)
 BuildRequires:	pkgconfig(zlib)
-BuildRequires:	pkgconfig(libtinyxml2_3) 
+BuildRequires:	pkgconfig(libtinyxml2) >= 6.0.0
 
 %description
 MediaInfo supplies technical and tag information about a video or
