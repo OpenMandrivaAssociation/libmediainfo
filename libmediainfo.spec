@@ -16,9 +16,9 @@ Patch0:		libmediainfo_0.7.70-pkgconfig.patch
 
 BuildRequires:	dos2unix
 BuildRequires:	doxygen
-BuildRequires:	pkgconfig(libzen) >= 0.4.29
+BuildRequires:	pkgconfig(libzen) >= 0.4.37
 BuildRequires:	pkgconfig(libcurl)
-BuildRequires:	pkgconfig(libmms)
+BuildRequires:	pkgconfig(libmms) >=0.6.4
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:	pkgconfig(tinyxml2) >= 6.0.0
 
