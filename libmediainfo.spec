@@ -63,7 +63,7 @@ Include files and mandatory libraries for development.
 #----------------------------------------------------------------------------
 %prep
 %setup -qn MediaInfoLib
-%patch0 -p1
+%autopatch -p1
 
 # Rename files
 cp Release/ReadMe_DLL_Linux.txt ReadMe.txt
@@ -89,7 +89,7 @@ pushd Project/GNU/Library
 		--with-libmd5=no \
 		--with-libtinyxml2 \
 		--enable-visibility
-	%make
+	%make_build
 popd
 
 # generate docs
@@ -100,7 +100,7 @@ popd
 
 %install
 pushd Project/GNU/Library/
-	%makeinstall_std
+	%make_install
 popd
 
 # MediaInfoDLL headers
@@ -120,7 +120,3 @@ install -Dm 644 Project/GNU/Library/libmediainfo.pc %{buildroot}%{_libdir}/pkgco
 
 #we don't want these
 rm -rf %{buildroot}%{_libdir}/libmediainfo.la
-
-
-
-
