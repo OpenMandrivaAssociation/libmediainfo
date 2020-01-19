@@ -5,7 +5,7 @@
 %define devname %mklibname %{oname} -d
 
 Name:		libmediainfo
-Version:	18.12
+Version:	19.09
 Release:	1
 Summary:	Supplies technical and tag information about a video or audio file
 Group:		System/Libraries
