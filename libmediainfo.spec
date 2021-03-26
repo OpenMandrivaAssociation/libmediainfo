@@ -5,7 +5,7 @@
 %define devname %mklibname %{oname} -d
 
 Name:		libmediainfo
-Version:	20.09
+Version:	21.03
 Release:	1
 Summary:	Supplies technical and tag information about a video or audio file
 Group:		System/Libraries
@@ -16,7 +16,7 @@ Patch0:		libmediainfo_0.7.70-pkgconfig.patch
 
 BuildRequires:	dos2unix
 BuildRequires:	doxygen
-BuildRequires:	pkgconfig(libzen) >= 0.4.37
+BuildRequires:	pkgconfig(libzen) >= 0.4.39
 BuildRequires:	pkgconfig(libcurl)
 BuildRequires:	pkgconfig(libmms) >= 0.6.4
 BuildRequires:	pkgconfig(zlib)
