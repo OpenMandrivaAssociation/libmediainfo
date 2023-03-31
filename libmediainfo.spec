@@ -6,7 +6,7 @@
 
 Name:		libmediainfo
 Version:	21.09
-Release:	1
+Release:	2
 Summary:	Supplies technical and tag information about a video or audio file
 Group:		System/Libraries
 License:	BSD
