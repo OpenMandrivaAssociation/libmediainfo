@@ -5,15 +5,14 @@
 %define devname %mklibname %{oname} -d
 
 Name:		libmediainfo
-Version:	21.09
-Release:	2
+Version:	23.04
+Release:	1
 Summary:	Supplies technical and tag information about a video or audio file
 Group:		System/Libraries
 License:	BSD
 URL:		http://mediaarea.net/
 Source0:	http://mediaarea.net/download/source/libmediainfo/%{version}/libmediainfo_%{version}.tar.bz2
 Patch0:		libmediainfo_0.7.70-pkgconfig.patch
-Patch1:		https://github.com/MediaArea/MediaInfoLib/commit/038dff8433053aada3e8bf34655e2cec67305c5c.patch
 
 BuildRequires:	dos2unix
 BuildRequires:	doxygen
