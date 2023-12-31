@@ -1,12 +1,13 @@
 %define oname	mediainfo
 
 %define major	0
-%define libname	%mklibname %{oname} %{major}
+%define libname	%mklibname %{oname}
+%define oldlibname	%mklibname %{oname} 0
 %define devname %mklibname %{oname} -d
 
 Name:		libmediainfo
 Version:	23.11
-Release:	1
+Release:	2
 Summary:	Supplies technical and tag information about a video or audio file
 Group:		System/Libraries
 License:	BSD
@@ -30,6 +31,7 @@ audio file.
 Summary:	Supplies technical and tag information about a video or audio file
 Group:		System/Libraries
 Provides:	libmediainfo
+%rename %{oldlibname}
 
 %description -n %{libname}
 MediaInfo supplies technical and tag information about a video or
