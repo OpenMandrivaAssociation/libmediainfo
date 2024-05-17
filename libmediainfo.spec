@@ -6,8 +6,8 @@
 %define devname %mklibname %{oname} -d
 
 Name:		libmediainfo
-Version:	23.11
-Release:	2
+Version:	24.04
+Release:	1
 Summary:	Supplies technical and tag information about a video or audio file
 Group:		System/Libraries
 License:	BSD
