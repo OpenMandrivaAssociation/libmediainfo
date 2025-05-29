@@ -13,7 +13,7 @@ Group:		System/Libraries
 License:	BSD
 URL:		https://mediaarea.net/
 Source0:	https://mediaarea.net/download/source/libmediainfo/%{version}/libmediainfo_%{version}.tar.bz2
-Patch0:		libmediainfo_0.7.70-pkgconfig.patch
+#Patch0:		libmediainfo_0.7.70-pkgconfig.patch
 
 BuildRequires:	dos2unix
 BuildRequires:	doxygen
