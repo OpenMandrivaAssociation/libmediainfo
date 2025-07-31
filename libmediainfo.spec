@@ -1,31 +1,32 @@
-%define oname	mediainfo
+%define	oname	mediainfo
 
-%define major	0
-%define libname	%mklibname %{oname}
-%define oldlibname	%mklibname %{oname} 0
-%define devname %mklibname %{oname} -d
+%define	major	0
+%define	libname	%mklibname %{oname}
+%define	oldlibname	%mklibname %{oname} 0
+%define	devname %mklibname %{oname} -d
 
-Name:		libmediainfo
-Version:	25.04
-Release:	2
 Summary:	Supplies technical and tag information about a video or audio file
-Group:		System/Libraries
+Name:	libmediainfo
+Version:	25.07
+Release:	1
 License:	BSD
-URL:		https://mediaarea.net/
+Group:	System/Libraries
+Url:		https://mediaarea.net/
 Source0:	https://mediaarea.net/download/source/libmediainfo/%{version}/libmediainfo_%{version}.tar.bz2
-#Patch0:		libmediainfo_0.7.70-pkgconfig.patch
-
+Source100:	libmediainfo.rpmlintrc
 BuildRequires:	dos2unix
 BuildRequires:	doxygen
-BuildRequires:	pkgconfig(libzen) >= 0.4.39
 BuildRequires:	pkgconfig(libcurl)
 BuildRequires:	pkgconfig(libmms) >= 0.6.4
-BuildRequires:	pkgconfig(zlib)
+BuildRequires:	pkgconfig(libzen) >= 0.4.39
 BuildRequires:	pkgconfig(tinyxml2) >= 6.0.0
+BuildRequires:	pkgconfig(zlib)
 
 %description
 MediaInfo supplies technical and tag information about a video or
 audio file.
+
+#-----------------------------------------------------------------------------
 
 %package -n %{libname}
 Summary:	Supplies technical and tag information about a video or audio file
@@ -38,12 +39,12 @@ MediaInfo supplies technical and tag information about a video or
 audio file.
 This package contains the shared library for MediaInfo.
 
-
 %files -n %{libname}
 %doc History.txt License.html ReadMe.txt
 %{_libdir}/libmediainfo.so.%{major}*
 
 #----------------------------------------------------------------------------
+
 %package -n %{devname}
 Summary:	Include files and mandatory libraries for development
 Group:		Development/C++
@@ -54,7 +55,6 @@ Provides:	mediainfo-devel = %{EVRD}
 %description -n %{devname}
 Include files and mandatory libraries for development.
 
-
 %files -n %{devname}
 %doc Changes.txt Doc Source/Example
 %{_includedir}/MediaInfo
@@ -63,9 +63,9 @@ Include files and mandatory libraries for development.
 %{_libdir}/pkgconfig/*.pc
 
 #----------------------------------------------------------------------------
+
 %prep
-%setup -qn MediaInfoLib
-%autopatch -p1
+%autosetup -p1 -n MediaInfoLib
 
 # Rename files
 cp Release/ReadMe_DLL_Linux.txt ReadMe.txt
@@ -77,6 +77,7 @@ chmod 644 *.txt *.html Source/Doc/*.html
 
 # Don't force -O2 by default
 sed -i -e "s|-O2||" Project/GNU/Library/configure.ac
+
 
 %build
 pushd Project/GNU/Library
@@ -94,11 +95,12 @@ pushd Project/GNU/Library
 	%make_build
 popd
 
-# generate docs
+# Generate the docs
 pushd Source/Doc
         doxygen -u 2> /dev/null
         doxygen Doxyfile
 popd
+
 
 %install
 pushd Project/GNU/Library/
@@ -114,11 +116,10 @@ install -m 644 Source/MediaInfoDLL/MediaInfoDLL.cs %{buildroot}%{_includedir}/Me
 install -m 644 Source/MediaInfoDLL/MediaInfoDLL.*.java %{buildroot}%{_includedir}/MediaInfoDLL
 install -m 644 Source/MediaInfoDLL/MediaInfoDLL*.py %{buildroot}%{_includedir}/MediaInfoDLL
 
-#fix and instal .pc file
+# Fix and install the .pc file
 sed -i -e 's|Version: |Version: %{version}|g' Project/GNU/Library/libmediainfo.pc
 sed -i -e '/Libs_Static.*/d' Project/GNU/Library/libmediainfo.pc
-
 install -Dm 644 Project/GNU/Library/libmediainfo.pc %{buildroot}%{_libdir}/pkgconfig/libmediainfo.pc
 
-#we don't want these
+# We don't want these
 rm -rf %{buildroot}%{_libdir}/libmediainfo.la

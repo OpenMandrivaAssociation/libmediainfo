@@ -1,0 +1,3 @@
+# Rpmlint gets confused by package name: it's libmediainfo
+# but it's not a lib32 package
+addFilter("E: pkgconfig-invalid-libs-dir")
