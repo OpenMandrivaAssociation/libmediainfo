@@ -1,13 +1,13 @@
 %define		oname	MediaInfo
 
 %define		major	0
-%define		libname	%mklibname %{oname}
-%define		oldlibname	%mklibname %{oname} 0
-%define		devname %mklibname %{oname} -d
+%define		libname	%mklibname %{name}
+%define		oldlibname	%mklibname %{name} 0
+%define		devname %mklibname %{name} -d
 
 Summary:	Supplies technical and tag information about a video or audio file
 Name:	libmediainfo
-Version:		25.07
+Version:		26.05
 Release:		1
 License:		BSD
 Group:	System/Libraries
@@ -18,9 +18,9 @@ BuildRequires:		autoconf
 BuildRequires:		automake
 BuildRequires:		dos2unix
 BuildRequires:		doxygen
+BuildRequires:		libtool
 BuildRequires:		libtool-base
 BuildRequires:		make
-BuildRequires:		slibtool
 BuildRequires:		pkgconfig(libcurl)
 BuildRequires:		pkgconfig(libmms) >= 0.6.4
 BuildRequires:		pkgconfig(libzen) >= 0.4.41
@@ -70,6 +70,9 @@ Include files and mandatory libraries for development.
 %prep
 %autosetup -p1 -n MediaInfoLib
 
+# Drop hidden git control file
+rm -f Source/Example/HowToUse_Dll-rs/.gitignore
+
 # Rename files
 cp Release/ReadMe_DLL_Linux.txt ReadMe.txt
 mv History_DLL.txt History.txt
@@ -83,6 +86,12 @@ sed -i -e "s|-O2||" Project/GNU/Library/configure.ac
 
 
 %build
+# Slibtool won't work with libmediainfo
+ln -sf %{_bindir}/libtoolize slibtoolize
+export PATH=$PWD:$PATH
+export LIBTOOLIZE=%{_bindir}/libtoolize
+export LIBTOOL=%{_bindir}/libtool
+
 pushd Project/GNU/Library
 	autoreconf -vfi
 	export CPPFLAGS="-DMEDIAINFO_LIBMMS_DESCRIBE_SUPPORT=0"
@@ -119,10 +128,10 @@ install -m 644 Source/MediaInfoDLL/MediaInfoDLL.cs %{buildroot}%{_includedir}/Me
 install -m 644 Source/MediaInfoDLL/MediaInfoDLL.*.java %{buildroot}%{_includedir}/MediaInfoDLL
 install -m 644 Source/MediaInfoDLL/MediaInfoDLL*.py %{buildroot}%{_includedir}/MediaInfoDLL
 
-# Fix and install the .pc file
+# Fix and install the provided .pc file
 sed -i -e 's|Version: |Version: %{version}|g' Project/GNU/Library/%{name}.pc
 sed -i -e '/Libs_Static.*/d' Project/GNU/Library/%{name}.pc
 install -Dm 644 Project/GNU/Library/%{name}.pc %{buildroot}%{_libdir}/pkgconfig/%{name}.pc
 
 # We don't want this
-rm -rf %{buildroot}%{_libdir}/libmediainfo.la
+#rm -rf %%{buildroot}%%{_libdir}/libmediainfo.la
